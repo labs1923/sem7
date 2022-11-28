@@ -26,3 +26,4 @@ k2= int(pow(x,b,p))
 
 print('Secret key for the a is',k1)
 print('Secret key for the is',k2)
+
