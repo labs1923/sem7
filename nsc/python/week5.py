@@ -1,20 +1,28 @@
-def a_public_value(p,g,a):
-    x_a = g**a
-    return x_a%p
+def primitive(n):
+    l=[]
+    for i in range(1,n):
+        for j in range(0,n-1):
+            k = int(pow(i,j,n))
+            if k not in l:
+                l.append(k)
+        if len(l)==n-1:
+            return i
+        l.clear()
 
-def b_public_value(p,g,b):
-    x_b = g**b
-    return x_b%p
+p = int(input("enter p "))
+g = primitive(p)
+print(g)
+a = int(input("enter a "))
+b = int(input("enter b "))
 
-p=int(input("Enter public number P : "))
-g=int(input("Enter primitive root of P : "))
-a=int(input("Enter private key of a : "))
-b=int(input("Enter private key of b : "))
-p_a=b_public_value(p,g,b)
-p_b=a_public_value(p,g,a)
+x = int(pow(g,a,p))
+y = int(pow(g,b,p))
 
-sym_a = (p_a**a)%p
-sym_b = (p_b**b)%p
+print(' keys of a is x=',x)
+print(' keys of b is y=',y)
 
-print("The secret key for a :",sym_a)
-print("The secret key for b :",sym_b)
+k1 = int(pow(y,a,p))
+k2= int(pow(x,b,p))
+
+print('Secret key for the a is',k1)
+print('Secret key for the is',k2)
